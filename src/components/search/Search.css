@@ -1,0 +1,31 @@
+.searchContainer {
+    display: flex;
+    align-items: center;
+    padding: 13px 16px;
+    width: 320px;
+    height: 40px;
+    background: #FFFFFF;
+    border: 1px solid #DBDBDB;
+    box-sizing: border-box;
+    border-radius: 6px;
+}
+
+.inputBox {
+    flex: 2;
+    background: #FFFFFF;
+    border: transparent;
+    border-radius: 4px;
+    Height: 100%;
+    padding-left: 13px;
+    font-family: Calibri;
+    font-size: 16px;
+    color: #222222;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+.cancelIcon {
+    cursor: pointer;
+}
