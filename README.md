@@ -1,5 +1,5 @@
-# Greedy Game Analytics Assessment
-  A simple web application for displaying data in table format.
+# Toddle Drive Assessment
+  A simple web application for displaying drive folders and files.
 
 ## Tech stack 
   1. **ReactJS**
