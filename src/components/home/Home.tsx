@@ -1,4 +1,4 @@
-import React, {useEffect, lazy, Suspense} from 'react';
+import React, {useEffect} from 'react';
 
 import {useSelector, useDispatch} from 'react-redux';
 
@@ -6,10 +6,9 @@ import actionCreators from '../../redux/actionCreators/documents';
 import BreadCrumb from '../breadCrumb';
 import AddModal from './AddModal';
 import DeleteModal from './DeleteModal';
+import Folder from '../folder';
 
 import './Home.css';
-
-const Folder = lazy(() => import('../folder'));
 
 const Home = () => {
 
@@ -57,13 +56,11 @@ const Home = () => {
                     routes={state.routes}
                 />
             </div>
-            <div className={'content'}>
-                <Suspense fallback={<div>{'Loading....'}</div>}>
-                    <Folder
-                        selectedFolder={state.selectedFolderCopy}
-                        subFolders={state.subFoldersCopy}
-                    />
-                </Suspense>
+            <div className={'content'}>\
+                <Folder
+                    selectedFolder={state.selectedFolderCopy}
+                    subFolders={state.subFoldersCopy}
+                />
             </div>
         </div>
     );
