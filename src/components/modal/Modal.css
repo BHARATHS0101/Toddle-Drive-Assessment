@@ -1,0 +1,46 @@
+.modalContainer {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;    
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.modalContainerOpen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    height: 237px;
+    width: 536px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+    padding: 32px;
+}
+
+.modalHeader {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Calibri;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    color: #222222;
+}
+
+.cancelIcon {
+    cursor: pointer;
+}
