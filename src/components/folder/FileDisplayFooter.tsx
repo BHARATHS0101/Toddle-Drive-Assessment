@@ -12,6 +12,9 @@ import Delete from '../../images/delete.svg';
 import Duplicate from '../../images/duplicate.svg';
 
 const FileDisplayFooter = (props: CommonComponentsNS.IFileDisplayFooterProps) => {
+
+    const [displayCard, setDisplayCard] = useState(false);
+
     const dispatch = useDispatch();
 
     const dispatchActionToSetRenameData = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -43,8 +46,6 @@ const FileDisplayFooter = (props: CommonComponentsNS.IFileDisplayFooterProps) =>
         e.stopPropagation(); 
     };
 
-    const [displayCard, setDisplayCard] = useState(false);
-
     const handleOnClickDots = (e: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
         e.stopPropagation();
         displayCard ? setDisplayCard(false):setDisplayCard(true);
@@ -71,6 +72,7 @@ const FileDisplayFooter = (props: CommonComponentsNS.IFileDisplayFooterProps) =>
                 alt={'Dots'} 
                 onClick={handleOnClickDots}
                 className={displayCard? 'dotsImage': ''}
+                id={'dotsImage'}
             />
             {displayCard && 
                 <div className={'overlayCard'}>
