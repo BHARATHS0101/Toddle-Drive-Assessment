@@ -17,11 +17,6 @@ html, body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #136FED;
+  background: #008392;
   border-radius: 10px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #603be6;
 }

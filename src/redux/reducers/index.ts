@@ -1,5 +1,7 @@
 import {combineReducers} from 'redux';
 
-export default combineReducers({
+import Documents from './documents';
 
+export default combineReducers({
+    Documents
 });

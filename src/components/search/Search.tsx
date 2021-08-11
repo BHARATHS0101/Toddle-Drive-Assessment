@@ -9,12 +9,12 @@ import Cancel from '../../images/cancel.svg';
 const Search = (props: CommonComponentsNS.ISearchProps) => {
 
     const [showCancelIcon, setShowCancelIcon] = useState(false);
-    const [inputValue, setInputValue] = useState<string | undefined>();
+    const [inputValue, setInputValue] = useState<string>('');
 
     const debounceFunction = useCallback(_.debounce(
-        (value : string) => {
-            console.log('hey debounce');
-    }, 400), [props.dataToFilter]);
+        (searchValue : string) => {
+            props.onSearchFunction(searchValue);
+    }, 400), []);
 
     const handleOnChangeInput = (e:React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(e.target.value);
@@ -28,6 +28,7 @@ const Search = (props: CommonComponentsNS.ISearchProps) => {
 
     const handleOnClickCancel = () => {
         setInputValue('');
+        props.onSearchFunction('');
         setShowCancelIcon(false);
     }
 

@@ -1,27 +1,10 @@
-import React, {useState} from 'react';
-
-import CommonButton from '../commonButton';
+import React from 'react';
 
 import './Modal.css';
 
 import Cancel from '../../images/cancel.svg';
 
 const Modal:React.FC<CommonComponentsNS.IModalProps> = (props) => {
-
-    const [inputValue, setInputValue] = useState<string>('');
-
-    const handleOnChangeInput = (e:React.ChangeEvent<HTMLInputElement>) => {
-        setInputValue(e.target.value);
-    };
-    
-    const handleCancel = () => {
-        setInputValue('');
-        props.onClickCancelIcon && props.onClickCancelIcon();
-    };
-
-    const handleOnClickButton = () => {
-        props.onClickButton(inputValue);
-    };
 
     const modalDisplayStyle = props.isModalOpen ?
                                 'modalContainer modalContainerOpen' : 
@@ -36,33 +19,11 @@ const Modal:React.FC<CommonComponentsNS.IModalProps> = (props) => {
                         <img src={Cancel} 
                             className={'cancelIcon'} 
                             alt={'Cancel'}
-                            onClick={handleCancel}
+                            onClick={props.onClickCancelIcon}
                         />
                     }
                 </div>
-                <div className={'inputContainer'}>
-                    {props.inputHeaderName}
-                    <input
-                        type={'text'}
-                        className={'inputBox'}
-                        value={inputValue}
-                        placeholder={'Please enter name'}
-                        onChange={handleOnChangeInput}
-                    />
-                </div>
-                <div className={'buttonsContainer'}>
-                    <CommonButton
-                        disabled={false}
-                        onClick={handleCancel}
-                        name={'cancel'}
-                        buttonStyle={'cancelButton'}
-                    />
-                    <CommonButton
-                        disabled={inputValue.length===0}
-                        onClick={handleOnClickButton}
-                        name={props.buttonName}
-                    />
-                </div>
+                {props.children}
             </div>
         </div>
     );
