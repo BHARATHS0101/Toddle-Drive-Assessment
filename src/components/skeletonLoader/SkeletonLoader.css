@@ -8,7 +8,10 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    column-gap: 12px;
+    row-gap: 12px;
 }
 
 .skeletonHeader {
@@ -16,7 +19,7 @@
     width: 200px;
     border-radius: 4px;
     background-color: #EBEBEB;
-    margin-bottom: 19px;
+    /* margin-bottom: 19px; */
 }
 
 .skeletonButtonsContainer {
@@ -69,6 +72,7 @@
     border-radius: 4px;
     background-color: #EBEBEB;
     margin-bottom: 19px;
+    margin-top: 12px;
 }
 
 .skeletonFolders {
