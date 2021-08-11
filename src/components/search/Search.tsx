@@ -14,7 +14,7 @@ const Search = (props: CommonComponentsNS.ISearchProps) => {
     const debounceFunction = useCallback(_.debounce(
         (searchValue : string) => {
             props.onSearchFunction(searchValue);
-    }, 400), []);
+    }, 400), []); 
 
     const handleOnChangeInput = (e:React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(e.target.value);

@@ -1,14 +1,15 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, lazy, Suspense} from 'react';
 
 import {useSelector, useDispatch} from 'react-redux';
 
 import actionCreators from '../../redux/actionCreators/documents';
 import BreadCrumb from '../breadCrumb';
-import Folder from '../folder';
 import AddModal from './AddModal';
 import DeleteModal from './DeleteModal';
 
 import './Home.css';
+
+const Folder = lazy(() => import('../folder'));
 
 const Home = () => {
 
@@ -20,7 +21,8 @@ const Home = () => {
 
     useEffect(() => {
         dispatch(actionCreators.setInitialData());
-    }, []); 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const dispatchActionToSubmitAddFileFolder = (fileFolderName: string) => {
         if(state.selectedModalActionType === 'create'){
@@ -56,10 +58,12 @@ const Home = () => {
                 />
             </div>
             <div className={'content'}>
-                <Folder
-                    selectedFolder={state.selectedFolderCopy}
-                    subFolders={state.subFoldersCopy}
-                />
+                <Suspense fallback={<div>{'Loading....'}</div>}>
+                    <Folder
+                        selectedFolder={state.selectedFolderCopy}
+                        subFolders={state.subFoldersCopy}
+                    />
+                </Suspense>
             </div>
         </div>
     );
