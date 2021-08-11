@@ -1,6 +1,6 @@
 declare namespace ReduxNS {
     interface IState {
-      Analytics: AnalyticsNS.IState
+      Documents: DocumentNS.IState
     }
   
     interface IThunkFunction<Actions> {
