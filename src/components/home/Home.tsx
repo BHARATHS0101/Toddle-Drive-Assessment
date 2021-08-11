@@ -7,6 +7,7 @@ import BreadCrumb from '../breadCrumb';
 import AddModal from './AddModal';
 import DeleteModal from './DeleteModal';
 import Folder from '../folder';
+import SkeletonLoader from '../skeletonLoader';
 
 import './Home.css';
 
@@ -19,7 +20,9 @@ const Home = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(actionCreators.setInitialData());
+        setTimeout(() => {
+            dispatch(actionCreators.setInitialData());
+        }, 4000);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -56,11 +59,16 @@ const Home = () => {
                     routes={state.routes}
                 />
             </div>
-            <div className={'content'}>\
-                <Folder
-                    selectedFolder={state.selectedFolderCopy}
-                    subFolders={state.subFoldersCopy}
-                />
+            <div className={'content'}>
+                {state.selectedFolder &&
+                    <Folder
+                        selectedFolder={state.selectedFolderCopy}
+                        subFolders={state.subFoldersCopy}
+                    />
+                } 
+                {!state.selectedFolder && 
+                    <SkeletonLoader/>
+                }
             </div>
         </div>
     );
