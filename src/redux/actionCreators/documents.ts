@@ -17,7 +17,7 @@ class ActionCreators implements DocumentNS.IActionCreators {
                             folderID: uniqueID,
                             folderName: 'My Documents',
                             files: {},
-                            parentID: null,
+                            parentIDs: [],
                         }
                     }
                     const routes:DocumentNS.IRoutes[] = [{
@@ -91,7 +91,9 @@ class ActionCreators implements DocumentNS.IActionCreators {
         localStorage.removeItem('documents');
         localStorage.setItem('documents', JSON.stringify(documentsData));
         const selectedFolder = _.find(documentsData, {folderID: selectedFolderID});
-        const subFolders = _.filter(documentsData, {parentID: selectedFolder?.folderID});
+        const subFolders = _.filter(documentsData, (eachDocument) => {
+            return (eachDocument.parentIDs[eachDocument.parentIDs.length-1] === selectedFolder?.folderID);
+        });
         dispatch({
             type: actionTypes.DOCUMENTS_SET_INITIAL_DATA,
             payload: {
@@ -112,11 +114,12 @@ class ActionCreators implements DocumentNS.IActionCreators {
         const uniqueID = Date.now().toString();
         if(selectedFolder){
             if(selectedModalFolderFileType === 'folder'){
+                const newParentIDs = selectedFolder.parentIDs;
                 const newFolder: DocumentNS.IFolder = {
                         folderID: uniqueID,
                         folderName: fileFolderName,
                         files: {},
-                        parentID: selectedFolder.folderID,
+                        parentIDs: newParentIDs.concat([selectedFolder.folderID]),
                 };
                 documents[uniqueID] = newFolder;
             }else {
@@ -246,6 +249,11 @@ class ActionCreators implements DocumentNS.IActionCreators {
         if(selectedFolder){
             if(fileFolderType === 'folder') {
                 delete documents[fileFolderIDToDelete];
+                _.map(documents, (eachDocument) => {
+                    if(_.includes(eachDocument.parentIDs, fileFolderIDToDelete)){
+                        delete documents[eachDocument.folderID];
+                    }
+                });
             }else {
                 delete documents[selectedFolder['folderID']].files[fileFolderIDToDelete];
             }
