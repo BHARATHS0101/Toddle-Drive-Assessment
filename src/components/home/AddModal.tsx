@@ -24,6 +24,7 @@ const AddModal = (props: DocumentNS.IAddModalProps) => {
 
     useEffect(() => {
             setInputValue(props.inputValue);
+            // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props]);
 
     const handleOnChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
