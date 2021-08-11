@@ -17,7 +17,7 @@ declare namespace DocumentNS {
         folderName: string;
         folderID: string;
         files: IFiles;
-        parentID: string | null;
+        parentIDs: string[];
     }
 
     interface IDocuments {
