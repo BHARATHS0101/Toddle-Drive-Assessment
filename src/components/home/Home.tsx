@@ -4,9 +4,10 @@ import {useSelector, useDispatch} from 'react-redux';
 
 import actionCreators from '../../redux/actionCreators/documents';
 import BreadCrumb from '../breadCrumb';
-import Folder from '../folder';
 import AddModal from './AddModal';
 import DeleteModal from './DeleteModal';
+import Folder from '../folder';
+import SkeletonLoader from '../skeletonLoader';
 
 import './Home.css';
 
@@ -19,8 +20,11 @@ const Home = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(actionCreators.setInitialData());
-    }, []); 
+        setTimeout(() => {
+            dispatch(actionCreators.setInitialData());
+        }, 4000);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const dispatchActionToSubmitAddFileFolder = (fileFolderName: string) => {
         if(state.selectedModalActionType === 'create'){
@@ -56,10 +60,15 @@ const Home = () => {
                 />
             </div>
             <div className={'content'}>
-                <Folder
-                    selectedFolder={state.selectedFolderCopy}
-                    subFolders={state.subFoldersCopy}
-                />
+                {state.selectedFolder &&
+                    <Folder
+                        selectedFolder={state.selectedFolderCopy}
+                        subFolders={state.subFoldersCopy}
+                    />
+                } 
+                {!state.selectedFolder && 
+                    <SkeletonLoader/>
+                }
             </div>
         </div>
     );
